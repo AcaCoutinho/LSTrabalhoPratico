@@ -1,0 +1,25 @@
+.container{
+    border: 2px,solid,black;    
+    background-color: rgb(63, 186, 52);
+    display: flex;
+    justify-content: center;   
+}
+.words{
+    background-color: yellowgreen;
+}
+.celula{
+    width: 30px;
+    height: 30px;
+    border: 1.3px solid rgb(25,25,25);
+    margin: 0px;
+    padding: 1px;
+    text-align: center;
+    align-items: center;
+}
+
+#jogo.facil{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+    margin: 10px;
+
+}
