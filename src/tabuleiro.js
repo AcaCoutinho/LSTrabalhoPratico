@@ -119,13 +119,11 @@ function criaTabuleiro(palavras, numOfLetras) {
         }while(espacoLivre === false)
     }
 
-    for(let i=0;i<numOfLetras;i++){
+   for(let i=0;i<numOfLetras;i++){
         for(let j=0;j<numOfLetras;j++)
             if(tab[i][j].letra === '_')
                 tab[i][j].letra = randomLetra();
     }
-
-
 
     tab = [].concat(...tab);
 
