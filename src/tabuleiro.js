@@ -24,8 +24,8 @@ function criaTabuleiro(palavras, numOfLetras) {
             }
         }
     }
-    
-    for(let i=0;i<palavras.length;i++){//percorre todas as plavaras
+
+    for(let i=0;i<palavras.length;i++){
         let tam = palavras[i].length;
         let espacoLivre = false;
         let directions = ["linha","coluna","linhaInvertida","colunaInvertida","diagonal1","diagonal1Invertida","diagonal2","diagonal2Invertida"];
@@ -35,7 +35,13 @@ function criaTabuleiro(palavras, numOfLetras) {
             let orientacao = 'linha';
             switch (orientacao) {
                 case "linha":
-
+                    console.log(palavras[i]);
+                        if(verificaPalavraLinha(tab, palavras[i], numOfLetras, posCol, posLin)){
+                            espacoLivre = true;
+                            for(let j = 0; j < tam; j++){
+                                tab[posLin][posCol + j].letra = palavras[i].charAt(j);
+                            }
+                        }
                     break;
                 case "coluna":
 
@@ -61,14 +67,26 @@ function criaTabuleiro(palavras, numOfLetras) {
                 default:
                     break;
             }
-            
-            espacoLivre = true;
         }while(espacoLivre === false)
     }
 
     tab = [].concat(...tab);
 
     return tab;
+}
+
+function verificaPalavraLinha(tab, palavra, numOfLetras, posCol, posLin){
+    let tam = palavra.length;
+    
+    if(tam < numOfLetras - posCol ){
+        for(let i = 0; i < tam; i++) {
+            if(tab[posLin][posCol + i].letra !== '_'){
+                return false;
+             }
+        }
+        return true;
+    }
+    return false;
 }
 
 export default criaTabuleiro;
