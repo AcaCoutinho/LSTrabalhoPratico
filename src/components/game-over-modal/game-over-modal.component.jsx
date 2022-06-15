@@ -2,7 +2,9 @@ import React from "react";
 import "./game-over-modal.css";
 
 import { Footer } from "../index";
-function GameOverModal({ isOpen, points, handleClose }) {
+
+function GameOverModal(props) {
+  const { isOpen, points, handleClose } = props
   const modalClass = `w3-modal ${isOpen ? "show-modal" : ""}`;
   return (
     <div id="modal-gameOver" className={modalClass}>

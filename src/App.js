@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from "react";
-import { useEffect } from "react";
+
 import "./assets/styles/App.css";
 
 import criaTabuleiro from "./tabuleiro";
@@ -11,8 +11,8 @@ import {
   Footer,
   Header,
   GamePanel,
+  GameOverModal,
 } from "./components";
-
 let timerId = undefined;
 
 let allPalavras = ["ISEC","SCRIPT", "VUE", "REACT", "HTML", "CSS"];
@@ -25,6 +25,8 @@ function App() {
   const [palavras, setPalavras] = useState([]);
 
   const [timer, setTimer] = useState(0);
+
+  const [popup,setPopup] = useState(true);
 
 
   /**
@@ -53,16 +55,19 @@ function App() {
     let numOfLetras;
     switch (value) {
       case '1':
-        numOfLetras = 8;
+        numOfLetras = 8;//linhas*colunas
         numPalavras = 3;
+        setTimer(10);
         break;
       case '2':
         numOfLetras = 10;
         numPalavras = 4;
+        setTimer(90);
         break;
       case '3':
         numOfLetras = 12;
         numPalavras = 5;
+        setTimer(100);
         break;
       default:
         numOfLetras = 0;
@@ -75,6 +80,9 @@ function App() {
     setLetras(letrasTab);
   }
 
+  
+  
+
   return (
     <div id="container">
       <Header />
@@ -84,11 +92,18 @@ function App() {
           onGameStart={handleGameStart}
           selectedLevel={selectedLevel}
           onLevelChange={handleLevelChange}
+          timer = {timer}
+          setGameStarted = {setGameStarted}
+          setTimer = {setTimer}
         />
         <GamePanel
           palavras = {palavras}
           letras = {letras}
           selectedLevel={selectedLevel} />
+        <GameOverModal
+          //popup = {popup} 
+          //setPopup = {setPopup} 
+        />
       </main>
       <Footer />
     </div>
