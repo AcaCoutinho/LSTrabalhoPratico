@@ -3,8 +3,7 @@ import React, { useState, useSyncExternalStore } from "react";
 import "./game-panel.css";
 import { Card } from "../index";
 
-function GamePanel({ selectedLevel, letras, palavras}) {
-  
+function GamePanel({ selectedLevel, letras, palavras }) {
   const gameClass =
     selectedLevel === "1"
       ? ""

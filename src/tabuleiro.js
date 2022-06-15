@@ -32,8 +32,8 @@ function criaTabuleiro(palavras, numOfLetras) {
         do{
             let posLin = randomNum(numOfLetras);
             let posCol = randomNum(numOfLetras);
-            let orientacao = directions[randomNum(8)];
-            //let orientacao = 'linhaInvertida';
+            let orientacao = directions[randomNum(directions.length)];
+            //let orientacao = 'diagonal2Invertida';
             switch (orientacao) {
                 case "linha":
                     //console.log(palavras[i]);
@@ -94,16 +94,23 @@ function criaTabuleiro(palavras, numOfLetras) {
         
                     break; 
                 case "diagonal2":
-                    /*
                     if(vericaPalavraDiagonalDois(tab, palavras[i], numOfLetras, posCol, posLin)){
                         espacoLivre=true;
                         for(let l=0,j=0 ;l < tam ;l++,j++){
                             tab[posLin + l][posCol - j].letra = palavras[i].charAt(l);
                         }
                     }
-                    */
+                    
                     break; 
                 case "diagonal2Invertida":
+                    if(vericaPalavraDiagonalDois(tab, palavras[i], numOfLetras, posCol, posLin)){
+                        espacoLivre=true;
+                        palavras[i] = reverseString(palavras[i]);
+                        for(let l=0,j=0 ;l < tam ;l++,j++){
+                            tab[posLin + l][posCol - j].letra = palavras[i].charAt(l);
+                        }
+                        palavras[i] = reverseString(palavras[i]);
+                    }
             
                     break; 
                 default:
@@ -111,6 +118,14 @@ function criaTabuleiro(palavras, numOfLetras) {
             }
         }while(espacoLivre === false)
     }
+
+    for(let i=0;i<numOfLetras;i++){
+        for(let j=0;j<numOfLetras;j++)
+            if(tab[i][j].letra === '_')
+                tab[i][j].letra = randomLetra();
+    }
+
+
 
     tab = [].concat(...tab);
 
@@ -157,7 +172,7 @@ function vericaPalavraDiagonalUm(tab, palavra, numOfLetras, posCol, posLin){
 
 function vericaPalavraDiagonalDois(tab, palavra, numOfLetras, posCol, posLin){
     let tam = palavra.length;
-    if(tam < numOfLetras - posCol && tam < numOfLetras - posLin){
+    if(tam < posCol && tam < numOfLetras - posLin){
             for(let i=0,j=0 ;j < tam ;i++,j++)
                 if(tab[posLin + i][posCol - j].letra !== '_')
                     return false;
