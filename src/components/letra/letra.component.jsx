@@ -4,9 +4,7 @@ function Letra({ letra, letrasDois,clicked }) {
     //selected->array max de 2 letras(as selecionadas)
     let selected = clicked ? " clicked" : "";
 
-    setTimeout(()=>{
-              
-    },100)
+
 
     return (
 

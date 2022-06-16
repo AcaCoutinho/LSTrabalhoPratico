@@ -3,7 +3,7 @@ import "./control-panel.css";
 
 let timerId = undefined;
 function ControlPanel(props) {
-  const { gameStarted, selectedLevel, onGameStart, onLevelChange, timer ,setTimer,setGameStarted,setSelectedLevel} =
+  const { gameStarted, selectedLevel, onGameStart, onLevelChange, timer ,setTimer,setGameStarted,setSelectedLevel,points,updatePoints} =
     props;
   const gameStartedClass = gameStarted ? " gameStarted" : "";
 
@@ -14,6 +14,7 @@ function ControlPanel(props) {
     if (gameStarted) { 
       timerId = setInterval(() => { 
         setTimer(timer-1); 
+        //updatePoints(0);
         let nextTimer = timer - 1; 
         if (nextTimer === 0) { 
           setGameStarted(false); 
@@ -72,7 +73,7 @@ function ControlPanel(props) {
         </dl>
         <dl className={`list-item left${gameStartedClass}`}>
           <dt>Pontuação:</dt>
-          <dd id="points">0</dd>
+          <dd id="points">{points}</dd>
         </dl>
       </div>
     </section>

@@ -1,13 +1,13 @@
 import React, { useState, useSyncExternalStore } from "react";
 import "./game-panel.css";
 import {Letra} from "../index"
-
+import {GameOverModal} from "../index"
 
 let letrasDois = [];
 
 let class1;
 let classFound = false;
-function GamePanel({ selectedLevel, letras, palavras,gameStarted,setGameStarted}) {
+function GamePanel({ selectedLevel, letras, palavras,gameStarted,setGameStarted,updatePoints}) {
   const [letraSelecionadas,setLetraSelecionadas] = useState([]);
 
   const gameClass =
@@ -55,6 +55,8 @@ function GamePanel({ selectedLevel, letras, palavras,gameStarted,setGameStarted}
                   console.log(palavras[i].palavra);
                   pal = true
                   palavras[i].encontrado = true;
+                  updatePoints(tam);
+                  //pintar espaços no meio
                   if(letrasDois[0].posCol < letrasDois[1].posCol){
                     for(let l = 0; l < tam; l++){  
                       for(let j = 0; j < letras.length; j++){
@@ -88,6 +90,7 @@ function GamePanel({ selectedLevel, letras, palavras,gameStarted,setGameStarted}
                 console.log(palavras[i].palavra);
                 pal = true
                 palavras[i].encontrado = true;
+                updatePoints(tam);
                 if(letrasDois[0].posLin < letrasDois[1].posLin){
                   for(let l = 0; l < tam; l++){  
                     for(let j = 0; j < letras.length; j++){
@@ -123,7 +126,8 @@ function GamePanel({ selectedLevel, letras, palavras,gameStarted,setGameStarted}
                   console.log(palavras[i].palavra);
                   pal = true
                   palavras[i].encontrado = true;
-                 
+                  updatePoints(tamCol);
+
                   //Diagonal1 
                   if(letrasDois[0].posLin < letrasDois[1].posLin && letrasDois[0].posCol < letrasDois[1].posCol){
                     for(let l = 0; l < tamCol; l++){  
@@ -195,6 +199,7 @@ function GamePanel({ selectedLevel, letras, palavras,gameStarted,setGameStarted}
       setGameStarted(false);
     }
   }
+  //updatePoints();
 
   return (
     <section className="game-panel">

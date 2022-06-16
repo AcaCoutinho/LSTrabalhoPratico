@@ -25,8 +25,21 @@ function App() {
   const [palavras, setPalavras] = useState([]);
 
   const [timer, setTimer] = useState(0);
+  const [points,setPoints] = useState(0);
+
 
   const [popup,setPopup] = useState(true);
+
+  function updatePoints(tam){
+    let totalPoints = points;
+    let menos = 10;
+    totalPoints += (timer * tam) + menos;
+    
+    //totalPoints = totalPoints - menos;
+
+    setPoints(totalPoints)
+  }
+
 
 
   /**
@@ -39,6 +52,7 @@ function App() {
     } else {
       console.log("Inicia Jogo");
       setGameStarted(true);
+      setPoints(0);
     }
   };
 
@@ -96,13 +110,16 @@ function App() {
           timer = {timer}
           setGameStarted = {setGameStarted}
           setTimer = {setTimer}
+          points={points}
+          updatePoints={updatePoints}
         />
         <GamePanel
           gameStarted={gameStarted}
           palavras = {palavras}
           letras = {letras}
           selectedLevel={selectedLevel}
-          setGameStarted = {setGameStarted} />
+          setGameStarted = {setGameStarted}
+          updatePoints={updatePoints} />
         <GameOverModal
           //popup = {popup} 
           //setPopup = {setPopup} 
