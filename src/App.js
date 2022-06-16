@@ -91,6 +91,7 @@ function App() {
           gameStarted={gameStarted}
           onGameStart={handleGameStart}
           selectedLevel={selectedLevel}
+          setSelectedLevel={setSelectedLevel}
           onLevelChange={handleLevelChange}
           timer = {timer}
           setGameStarted = {setGameStarted}
@@ -100,7 +101,8 @@ function App() {
           gameStarted={gameStarted}
           palavras = {palavras}
           letras = {letras}
-          selectedLevel={selectedLevel} />
+          selectedLevel={selectedLevel}
+          setGameStarted = {setGameStarted} />
         <GameOverModal
           //popup = {popup} 
           //setPopup = {setPopup} 

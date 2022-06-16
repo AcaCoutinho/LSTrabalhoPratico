@@ -3,9 +3,12 @@ import "./control-panel.css";
 
 let timerId = undefined;
 function ControlPanel(props) {
-  const { gameStarted, selectedLevel, onGameStart, onLevelChange, timer ,setTimer,setGameStarted} =
+  const { gameStarted, selectedLevel, onGameStart, onLevelChange, timer ,setTimer,setGameStarted,setSelectedLevel} =
     props;
   const gameStartedClass = gameStarted ? " gameStarted" : "";
+
+  
+  
 
   useEffect(() => { 
     if (gameStarted) { 
@@ -30,6 +33,8 @@ function ControlPanel(props) {
     }; 
   }, [gameStarted, timer]);
 
+
+
   return (
     <section id="panel-control">
       <h3 className="sr-only">Escolha do Nível</h3>
@@ -39,7 +44,7 @@ function ControlPanel(props) {
           <select
             id="btLevel"
             defaultValue="0"
-            onChange={onLevelChange}
+            onChange={onLevelChange} 
             disabled={gameStarted}
           >
             <option value="0">Seleccione...</option>
