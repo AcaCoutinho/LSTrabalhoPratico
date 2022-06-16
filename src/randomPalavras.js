@@ -5,7 +5,10 @@ function randomPalavras(allPalavras, numPalavras) {
 
     for (let i = 0; i < numPalavras; i++) {
         let index = Math.floor(Math.random() * aux.length);
-        tabPalavras.push(aux[index]);
+        tabPalavras.push({
+            palavra: aux[index],
+            encontrado: false
+        });
         aux.splice(index, 1);
     }
 

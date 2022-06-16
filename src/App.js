@@ -57,7 +57,7 @@ function App() {
       case '1':
         numOfLetras = 8;//linhas*colunas
         numPalavras = 3;
-        setTimer(10);
+        setTimer(100);
         break;
       case '2':
         numOfLetras = 10;
@@ -97,6 +97,7 @@ function App() {
           setTimer = {setTimer}
         />
         <GamePanel
+          gameStarted={gameStarted}
           palavras = {palavras}
           letras = {letras}
           selectedLevel={selectedLevel} />

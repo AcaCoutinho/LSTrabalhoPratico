@@ -3,3 +3,4 @@ export { default as GamePanel } from "./game-panel/game-panel.component";
 export { default as Footer } from "./footer/footer.component";
 export { default as Header } from "./header/header.component";
 export { default as GameOverModal } from "./game-over-modal/game-over-modal.component";
+export { default as Letra } from "./letra/letra.component";

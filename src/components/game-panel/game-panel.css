@@ -36,15 +36,8 @@
   grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
 }
 
-.celula {
-  width: 25px;
-  height: 25px;
-  border: 1px solid rgb(100,100,100);
-  margin: 0.5px;
-  padding: 1px;
-  text-align: center;
-  align-items: center;
-  border-radius: 5px;
+#game.hide {
+  display: none;
 }
 
 .palavras {
@@ -53,7 +46,11 @@
   padding-left: 10px;
 }
 
-.palavra {
+.palavras.hide {
+  display: none;
+}
+
+.palavra.false {
   width: 100px;
   height: auto;
   border: 1px solid rgb(100,100,100);
@@ -61,4 +58,16 @@
   margin-bottom: 20px;
   padding: 2px;
   border-radius: 5px;
+  background-color: red;
+}
+
+.palavra.true {
+  width: 100px;
+  height: auto;
+  border: 1px solid rgb(100,100,100);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 2px;
+  border-radius: 5px;
+  background-color: green;
 }

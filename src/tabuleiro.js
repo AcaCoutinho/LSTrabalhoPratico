@@ -26,7 +26,7 @@ function criaTabuleiro(palavras, numOfLetras) {
     }
 
     for(let i=0;i<palavras.length;i++){
-        let tam = palavras[i].length;
+        let tam = palavras[i].palavra.length;
         let espacoLivre = false;
         let directions = ["linha","coluna","linhaInvertida","colunaInvertida","diagonal1","diagonal1Invertida","diagonal2","diagonal2Invertida"];
         do{
@@ -37,79 +37,79 @@ function criaTabuleiro(palavras, numOfLetras) {
             switch (orientacao) {
                 case "linha":
                     //console.log(palavras[i]);
-                        if(verificaPalavraLinha(tab, palavras[i], numOfLetras, posCol, posLin)){
+                        if(verificaPalavraLinha(tab, palavras[i].palavra, numOfLetras, posCol, posLin)){
                             espacoLivre = true;
                             for(let j = 0; j < tam; j++){
-                                tab[posLin][posCol + j].letra = palavras[i].charAt(j);
+                                tab[posLin][posCol + j].letra = palavras[i].palavra.charAt(j);
                             }
                         }
                     break;
                 case "coluna":
-                        if(vericaPalavraColuna(tab,palavras[i],numOfLetras,posCol,posLin)){
+                        if(vericaPalavraColuna(tab,palavras[i].palavra,numOfLetras,posCol,posLin)){
                             espacoLivre = true;
                             for(let j=0;j<tam;j++){
-                                tab[posLin + j][posCol].letra = palavras[i].charAt(j);
+                                tab[posLin + j][posCol].letra = palavras[i].palavra.charAt(j);
                             }
                         }
 
                     break;
                 case "linhaInvertida":
-                    if(verificaPalavraLinha(tab, palavras[i], numOfLetras, posCol, posLin)){
+                    if(verificaPalavraLinha(tab, palavras[i].palavra, numOfLetras, posCol, posLin)){
                         espacoLivre = true;
-                        palavras[i] = reverseString(palavras[i]);
+                        palavras[i].palavra = reverseString(palavras[i].palavra);
                         for(let j = 0; j < tam; j++){
-                            tab[posLin][posCol + j].letra = palavras[i].charAt(j);
+                            tab[posLin][posCol + j].letra = palavras[i].palavra.charAt(j);
                         }
-                        palavras[i] = reverseString(palavras[i]);
+                        palavras[i].palavra = reverseString(palavras[i].palavra);
                     }
                     break;
                 case "colunaInvertida":
-                    if(vericaPalavraColuna(tab,palavras[i],numOfLetras,posCol,posLin)){
+                    if(vericaPalavraColuna(tab,palavras[i].palavra,numOfLetras,posCol,posLin)){
                         espacoLivre = true;
-                        palavras[i] = reverseString(palavras[i]);
+                        palavras[i].palavra = reverseString(palavras[i].palavra);
                         for(let j=0;j<tam;j++){
-                            tab[posLin + j][posCol].letra = palavras[i].charAt(j);
+                            tab[posLin + j][posCol].letra = palavras[i].palavra.charAt(j);
                         }
-                        palavras[i] = reverseString(palavras[i]);
+                        palavras[i].palavra = reverseString(palavras[i].palavra);
                     }
                     break;
                 case "diagonal1":
-                        if(vericaPalavraDiagonalUm(tab, palavras[i], numOfLetras, posCol, posLin)){
+                        if(vericaPalavraDiagonalUm(tab, palavras[i].palavra, numOfLetras, posCol, posLin)){
                             espacoLivre=true;
                             for(let l=0,j=0 ;l < tam ;l++,j++){
-                                tab[posLin + l][posCol + j].letra = palavras[i].charAt(l);
+                                tab[posLin + l][posCol + j].letra = palavras[i].palavra.charAt(l);
                             }
                         }
 
                     break;    
                 case "diagonal1Invertida":
-                    if(vericaPalavraDiagonalUm(tab, palavras[i], numOfLetras, posCol, posLin)){
+                    if(vericaPalavraDiagonalUm(tab, palavras[i].palavra, numOfLetras, posCol, posLin)){
                         espacoLivre=true;
-                        palavras[i] = reverseString(palavras[i]);
+                        palavras[i].palavra = reverseString(palavras[i].palavra);
                         for(let l=0,j=0 ;l < tam ;l++,j++){
-                            tab[posLin + l][posCol + j].letra = palavras[i].charAt(l);
+                            tab[posLin + l][posCol + j].letra = palavras[i].palavra.charAt(l);
                         }
-                        palavras[i] = reverseString(palavras[i]);
+                        palavras[i].palavra = reverseString(palavras[i].palavra);
                     }
         
                     break; 
                 case "diagonal2":
-                    if(vericaPalavraDiagonalDois(tab, palavras[i], numOfLetras, posCol, posLin)){
+                    if(vericaPalavraDiagonalDois(tab, palavras[i].palavra, numOfLetras, posCol, posLin)){
                         espacoLivre=true;
                         for(let l=0,j=0 ;l < tam ;l++,j++){
-                            tab[posLin + l][posCol - j].letra = palavras[i].charAt(l);
+                            tab[posLin + l][posCol - j].letra = palavras[i].palavra.charAt(l);
                         }
                     }
                     
                     break; 
                 case "diagonal2Invertida":
-                    if(vericaPalavraDiagonalDois(tab, palavras[i], numOfLetras, posCol, posLin)){
+                    if(vericaPalavraDiagonalDois(tab, palavras[i].palavra, numOfLetras, posCol, posLin)){
                         espacoLivre=true;
-                        palavras[i] = reverseString(palavras[i]);
+                        palavras[i].palavra = reverseString(palavras[i].palavra);
                         for(let l=0,j=0 ;l < tam ;l++,j++){
-                            tab[posLin + l][posCol - j].letra = palavras[i].charAt(l);
+                            tab[posLin + l][posCol - j].letra = palavras[i].palavra.charAt(l);
                         }
-                        palavras[i] = reverseString(palavras[i]);
+                        palavras[i].palavra = reverseString(palavras[i].palavra);
                     }
             
                     break; 
@@ -122,7 +122,7 @@ function criaTabuleiro(palavras, numOfLetras) {
    for(let i=0;i<numOfLetras;i++){
         for(let j=0;j<numOfLetras;j++)
             if(tab[i][j].letra === '_')
-                tab[i][j].letra = randomLetra();
+                tab[i][j].letra = '.'//randomLetra();
     }
 
     tab = [].concat(...tab);
