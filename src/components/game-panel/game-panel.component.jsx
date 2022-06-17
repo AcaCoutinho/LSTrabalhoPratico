@@ -7,7 +7,7 @@ let letrasDois = [];
 
 let class1;
 let classFound = false;
-function GamePanel({ selectedLevel, letras, palavras,gameStarted,setGameStarted,updatePoints}) {
+function GamePanel({ selectedLevel, letras, palavras,gameStarted,setGameStarted,updatePoints,popupIsOpen,setPopupIsOpen}) {
   const [letraSelecionadas,setLetraSelecionadas] = useState([]);
 
   const gameClass =
@@ -197,9 +197,31 @@ function GamePanel({ selectedLevel, letras, palavras,gameStarted,setGameStarted,
     }
     if(count === palavras.length){
       setGameStarted(false);
+      setPopupIsOpen(true);
     }
   }
-  //updatePoints();
+
+
+  //limpar as letras
+  function resetTabuleiro(letras){
+    for(let i=0;i<letras.length;i++){
+      letras[i].clicked = false;
+    }
+
+  }
+
+  //limpas as palavras
+  function resetPalavras(palavras){
+    for(let i=0;i<palavras.length;i++){
+      palavras[i].encontrado = false;
+    }
+
+  }
+
+  if(!gameStarted){
+    resetTabuleiro(letras);
+    resetPalavras(palavras);
+  }
 
   return (
     <section className="game-panel">

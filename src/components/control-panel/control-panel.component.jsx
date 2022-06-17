@@ -3,7 +3,7 @@ import "./control-panel.css";
 
 let timerId = undefined;
 function ControlPanel(props) {
-  const { gameStarted, selectedLevel, onGameStart, onLevelChange, timer ,setTimer,setGameStarted,setSelectedLevel,points,updatePoints} =
+  const { gameStarted, selectedLevel, onGameStart, onLevelChange, timer ,setTimer,setGameStarted,setSelectedLevel,points,updatePoints,setPopupIsOpen} =
     props;
   const gameStartedClass = gameStarted ? " gameStarted" : "";
 
@@ -18,6 +18,7 @@ function ControlPanel(props) {
         let nextTimer = timer - 1; 
         if (nextTimer === 0) { 
           setGameStarted(false); 
+          setPopupIsOpen(true);
         } 
       }, 1000); 
     }else if(timer !== 10 && selectedLevel === '1'){ 

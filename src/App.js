@@ -13,30 +13,23 @@ import {
   GamePanel,
   GameOverModal,
 } from "./components";
-let timerId = undefined;
 
 let allPalavras = ["ISEC","SCRIPT", "VUE", "REACT", "HTML", "CSS"];
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState("0");
-
   const [letras, setLetras] = useState([]);
   const [palavras, setPalavras] = useState([]);
-
   const [timer, setTimer] = useState(0);
   const [points,setPoints] = useState(0);
-
-
-  const [popup,setPopup] = useState(true);
+  const [popupIsOpen,setPopupIsOpen] = useState(false)
 
   function updatePoints(tam){
     let totalPoints = points;
     let menos = 10;
     totalPoints += (timer * tam) + menos;
     
-    //totalPoints = totalPoints - menos;
-
     setPoints(totalPoints)
   }
 
@@ -49,9 +42,11 @@ function App() {
     if (gameStarted) {
       console.log("Termina Jogo");
       setGameStarted(false);
+      setPopupIsOpen(true);
     } else {
       console.log("Inicia Jogo");
       setGameStarted(true);
+      setPopupIsOpen(false);
       setPoints(0);
     }
   };
@@ -95,10 +90,16 @@ function App() {
   }
 
   
+
   
 
   return (
     <div id="container">
+      <GameOverModal
+          isOpen={popupIsOpen}
+          setPopupIsOpen={setPopupIsOpen}
+          points={points}
+        />   
       <Header />
       <main className="main-content">
         <ControlPanel
@@ -112,18 +113,19 @@ function App() {
           setTimer = {setTimer}
           points={points}
           updatePoints={updatePoints}
+          setPopupIsOpen={setPopupIsOpen}
         />
         <GamePanel
           gameStarted={gameStarted}
           palavras = {palavras}
           letras = {letras}
           selectedLevel={selectedLevel}
-          setGameStarted = {setGameStarted}
-          updatePoints={updatePoints} />
-        <GameOverModal
-          //popup = {popup} 
-          //setPopup = {setPopup} 
+          setGameStarted={setGameStarted}
+          updatePoints={updatePoints}
+          popupIsOpen={popupIsOpen}
+          setPopupIsOpen={setPopupIsOpen}
         />
+        
       </main>
       <Footer />
     </div>

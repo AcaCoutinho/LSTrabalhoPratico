@@ -1,41 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import "./game-over-modal.css";
-
+import "../../assets/styles/w3.css";
 import { Footer } from "../index";
 
-function GameOverModal(props) {
-  const { isOpen, points, handleClose } = props
-  const modalClass = `w3-modal ${isOpen ? "show-modal" : ""}`;
-  return (
-    <div id="modal-gameOver" className={modalClass}>
-      <div className="w3-modal-content w3-card-4 w3-animate-zoom estilos">
-        <header>
-          <span
-            className="w3-button w3-display-topright closeModal"
-            data-modalid="gameOver"
-            onClick={handleClose}
-          >
-            &times;
-          </span>
-          <div>Jogo Terminado</div>
-        </header>
-        <div className="info" id="messageGameOver">
-          <p>Pontuação: {points}</p>
+function GameOverModal({ isOpen,setPopupIsOpen, points, handleClose }) {
+  return(isOpen) ? (
+    <div className="popup">
+      <div className="popup-inner">
+        <button className="close-btn" onClick={() => setPopupIsOpen(false)}>Fechar</button>
+        <div className="info ">
+          <p>O jogo terminou!</p>
+          <br></br>
+          <p>Pontuação: {points} pontos!</p>
         </div>
-        {/* <div className="info" id="nickname">
-          Nick Name:
-          <input
-            type="text"
-            id="inputNick"
-            size="16"
-            placeholder="Introduza seu Nick"
-          />
-          <button id="okTop">ok</button>
-        </div> */}
-        <Footer />
       </div>
     </div>
-  );
+  ) : "";
 }
+  
 
 export default GameOverModal;
