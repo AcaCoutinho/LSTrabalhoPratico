@@ -13,22 +13,18 @@ import {
   GamePanel,
   GameOverModal,
 } from "./components";
-let timerId = undefined;
 
 let allPalavras = ["ISEC","SCRIPT", "VUE", "REACT", "HTML", "CSS"];
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState("0");
-
   const [letras, setLetras] = useState([]);
   const [palavras, setPalavras] = useState([]);
-
   const [timer, setTimer] = useState(0);
   const [points,setPoints] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
-
-  const [popup,setPopup] = useState(true);
 
   function updatePoints(tam){
     let totalPoints = points;
@@ -40,6 +36,10 @@ function App() {
     setPoints(totalPoints)
   }
 
+  const handleCloseModal = () => {
+    console.log("1")
+    setIsModalOpen(!isModalOpen);
+  }
 
 
   /**
@@ -49,9 +49,11 @@ function App() {
     if (gameStarted) {
       console.log("Termina Jogo");
       setGameStarted(false);
+      setIsModalOpen(true);
     } else {
       console.log("Inicia Jogo");
       setGameStarted(true);
+      setIsModalOpen(true);
       setPoints(0);
     }
   };
@@ -64,7 +66,7 @@ function App() {
   const handleLevelChange = (event) => {
     const { value } = event.currentTarget;
     setSelectedLevel(value);
-
+    //setIsModalOpen(false);//-----------------------
     let numPalavras;
     let numOfLetras;
     switch (value) {
@@ -99,6 +101,11 @@ function App() {
 
   return (
     <div id="container">
+      <GameOverModal
+        isOpen={isModalOpen}
+        points={points}
+        handleClose={handleCloseModal}
+      />
       <Header />
       <main className="main-content">
         <ControlPanel
@@ -118,11 +125,8 @@ function App() {
           palavras = {palavras}
           letras = {letras}
           selectedLevel={selectedLevel}
-          setGameStarted = {setGameStarted}
-          updatePoints={updatePoints} />
-        <GameOverModal
-          //popup = {popup} 
-          //setPopup = {setPopup} 
+          setGameStarted={setGameStarted}
+          updatePoints={updatePoints}
         />
       </main>
       <Footer />

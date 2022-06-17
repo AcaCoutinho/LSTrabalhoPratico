@@ -18,6 +18,7 @@ function ControlPanel(props) {
         let nextTimer = timer - 1; 
         if (nextTimer === 0) { 
           setGameStarted(false); 
+
         } 
       }, 1000); 
     }else if(timer !== 10 && selectedLevel === '1'){ 

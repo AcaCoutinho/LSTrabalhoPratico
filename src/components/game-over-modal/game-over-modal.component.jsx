@@ -1,11 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import "./game-over-modal.css";
+import "../../assets/styles/w3.css";
 
 import { Footer } from "../index";
-
-function GameOverModal(props) {
-  const { isOpen, points, handleClose } = props
+function GameOverModal({ isOpen, points, handleClose }) {
   const modalClass = `w3-modal ${isOpen ? "show-modal" : ""}`;
+  const [inputNickText, setInputNickText] = useState("");
   return (
     <div id="modal-gameOver" className={modalClass}>
       <div className="w3-modal-content w3-card-4 w3-animate-zoom estilos">
@@ -22,16 +22,18 @@ function GameOverModal(props) {
         <div className="info" id="messageGameOver">
           <p>Pontuação: {points}</p>
         </div>
-        {/* <div className="info" id="nickname">
-          Nick Name:
-          <input
-            type="text"
-            id="inputNick"
-            size="16"
-            placeholder="Introduza seu Nick"
-          />
-          <button id="okTop">ok</button>
-        </div> */}
+        {
+          <div className="info" id="nickname">
+            Nick Name:
+            <input
+              type="text"
+              id="inputNick"
+              size="16"
+              placeholder="Introduza seu Nick"
+            />
+            <button id="okTop">ok</button>
+          </div>
+        }
         <Footer />
       </div>
     </div>
