@@ -19,12 +19,12 @@ function ControlPanel(props) {
           setPopupIsOpen(true);
         } 
       }, 1000); 
-    }else if(timer !== 10 && selectedLevel === '1'){ 
-      setTimer(10); 
-    }else if(timer !== 75 && selectedLevel === '2'){
-      setTimer(75); 
-    }else if(timer !== 60 && selectedLevel === '3'){
+    }else if(timer !== 60 && selectedLevel === '1'){ 
       setTimer(60); 
+    }else if(timer !== 70 && selectedLevel === '2'){
+      setTimer(70); 
+    }else if(timer !== 75 && selectedLevel === '3'){
+      setTimer(75); 
     }
     return () => { 
       if (timerId) { 

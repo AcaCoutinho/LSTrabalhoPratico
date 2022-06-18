@@ -77,17 +77,17 @@ function App() {
       case '1':
         numOfLetras = 8;//linhas*colunas
         numPalavras = 3;
-        setTimer(100);
+        setTimer(60);
         break;
       case '2':
         numOfLetras = 10;
         numPalavras = 4;
-        setTimer(90);
+        setTimer(70);
         break;
       case '3':
         numOfLetras = 12;
         numPalavras = 5;
-        setTimer(100);
+        setTimer(75);
         break;
       default:
         numOfLetras = 0;
@@ -95,7 +95,7 @@ function App() {
         break;
     }
     
-    allPalavras[6] = localStorage.getItem("palavras")
+    allPalavras.push(localStorage.getItem("palavras"))
     console.table( allPalavras)
     const palavras = randomPalavras(allPalavras, numPalavras);
     setPalavras(palavras);
