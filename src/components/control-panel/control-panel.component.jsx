@@ -57,7 +57,7 @@ function ControlPanel(props) {
             <option value="3">Difícil (12x12)</option>
           </select>
           <div className="adiciona">
-            <button className="btnNovaPalavra" type="button" onClick={ () => {
+            <button className="btnNovaPalavra" type="button" disabled={gameStarted} onClick={ () => {
               Palavra = novaPalavra.toUpperCase();
               console.log("ss->"+novaPalavra)
               if(novaPalavra.length > 2){
