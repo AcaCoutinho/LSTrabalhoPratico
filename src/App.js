@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from "react";
 
 import "./assets/styles/App.css";
@@ -24,6 +24,10 @@ function App() {
   const [timer, setTimer] = useState(0);
   const [points,setPoints] = useState(0);
   const [popupIsOpen,setPopupIsOpen] = useState(false)
+  const [novasPalavras,setNovasPalavras] = useState([]);
+
+  
+ 
 
   function updatePoints(tam){
     let totalPoints = points;
@@ -32,8 +36,13 @@ function App() {
     
     setPoints(totalPoints)
   }
+  
+  useEffect(() =>{
+    for(let i=0;i<novasPalavras.length;i++){
+      localStorage.setItem('palavras',novasPalavras[i]);
+    }
 
-
+  },[novasPalavras])
 
   /**
   * When the game starts
@@ -51,6 +60,8 @@ function App() {
     }
   };
 
+
+  //}
   /**
    * When the user selects a new level,
    * this callback function is executed
@@ -83,6 +94,9 @@ function App() {
         numPalavras = 0;
         break;
     }
+    
+    allPalavras[6] = localStorage.getItem("palavras")
+    console.table( allPalavras)
     const palavras = randomPalavras(allPalavras, numPalavras);
     setPalavras(palavras);
     const letrasTab = criaTabuleiro(palavras, numOfLetras);
@@ -114,6 +128,9 @@ function App() {
           points={points}
           updatePoints={updatePoints}
           setPopupIsOpen={setPopupIsOpen}
+          novasPalavras={novasPalavras}
+          setNovasPalavras={setNovasPalavras}
+
         />
         <GamePanel
           gameStarted={gameStarted}

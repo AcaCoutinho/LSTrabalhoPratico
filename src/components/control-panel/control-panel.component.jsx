@@ -1,20 +1,18 @@
-import React, {useState, useEffect} from "react";
+import React, {useState,useForm, useEffect} from "react";
 import "./control-panel.css";
 
 let timerId = undefined;
 function ControlPanel(props) {
-  const { gameStarted, selectedLevel, onGameStart, onLevelChange, timer ,setTimer,setGameStarted,setSelectedLevel,points,updatePoints,setPopupIsOpen} =
+  const { gameStarted, selectedLevel, onGameStart, onLevelChange, timer ,setTimer,setGameStarted,setSelectedLevel,points,updatePoints,setPopupIsOpen,novasPalavras,setNovasPalavras} =
     props;
   const gameStartedClass = gameStarted ? " gameStarted" : "";
-
-  
-  
-
+  const [novaPalavra,setNovaPalavra] = useState([])
+  let Palavra;
   useEffect(() => { 
     if (gameStarted) { 
       timerId = setInterval(() => { 
         setTimer(timer-1); 
-        //updatePoints(0);
+
         let nextTimer = timer - 1; 
         if (nextTimer === 0) { 
           setGameStarted(false); 
@@ -35,6 +33,10 @@ function ControlPanel(props) {
     }; 
   }, [gameStarted, timer]);
 
+  function getPalavra(val){
+    setNovaPalavra(val.target.value);
+    console.log(val.target.value);
+  } 
 
 
   return (
@@ -54,6 +56,21 @@ function ControlPanel(props) {
             <option value="2">Médio (10x10)</option>
             <option value="3">Difícil (12x12)</option>
           </select>
+          <div className="adiciona">
+            <button className="btnNovaPalavra" type="button" onClick={ () => {
+              Palavra = novaPalavra.toUpperCase();
+              console.log("ss->"+novaPalavra)
+              if(novaPalavra.length > 2){
+                setNovasPalavras(novasPalavras.concat(...[Palavra]));
+              }
+              
+            }}>
+              Adicionar
+            </button>
+            <input className="input" onChange={getPalavra} type="text" size="10" minLength="3" maxLength="8" placeholder="Adicionar palavra" >
+            
+            </input>
+          </div>
         </fieldset>
         <button
           type="button"

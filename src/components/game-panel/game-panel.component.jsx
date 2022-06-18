@@ -228,7 +228,7 @@ function GamePanel({ selectedLevel, letras, palavras,gameStarted,setGameStarted,
       <h3 className="sr-only">Peças do Jogo</h3>
       <div id="game" className={gameClass + class1}>
         {letras.map((letras, i) => (
-          <div key={i} onClick = {() => {verificaLetras(i) ; finalizaJogo()}}>
+          <div onClick = {() => {verificaLetras(i) ; finalizaJogo()}}>
             <Letra 
               letra={letras.letra}
               onClickLetra = {handleClickLetra}
