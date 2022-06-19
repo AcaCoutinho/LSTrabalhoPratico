@@ -15,7 +15,7 @@ import {
 } from "./components";
 
 let allPalavras = ["ISEC","SCRIPT", "VUE", "REACT", "HTML", "CSS"];
-
+let count = 0;
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState("0");
@@ -73,6 +73,7 @@ function App() {
 
     let numPalavras;
     let numOfLetras;
+    
     switch (value) {
       case '1':
         numOfLetras = 8;//linhas*colunas
@@ -94,8 +95,14 @@ function App() {
         numPalavras = 0;
         break;
     }
+
+    if(count === 0){
+      allPalavras.push(localStorage.getItem("palavras"))
+    }
+    count++;
     
-    allPalavras.push(localStorage.getItem("palavras"))
+    console.table( allPalavras)
+    tiraNull(allPalavras)
     console.table( allPalavras)
     const palavras = randomPalavras(allPalavras, numPalavras);
     setPalavras(palavras);
@@ -103,6 +110,14 @@ function App() {
     setLetras(letrasTab);
   }
 
+  //retirar o null que fica no array quando uma palavra armazenada é apagada
+  function tiraNull(allPalavras){
+    let tam = allPalavras.length;
+      if(allPalavras[tam - 1] === null)
+      {
+        allPalavras.pop();
+      }
+  }
   
 
   
